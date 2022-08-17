@@ -7,7 +7,7 @@ plugins {
     kotlin("plugin.spring") version "1.6.21"
 
     id("org.jetbrains.kotlinx.kover") version "0.6.0-Beta"
-//    id("org.sonarqube") version "3.3"
+    id("org.sonarqube") version "3.3"
 }
 
 group = "com.example"
@@ -38,23 +38,20 @@ tasks.withType<Test> {
 }
 
 kover {
-    engine.set(kotlinx.kover.api.DefaultJacocoEngine)
+    engine.set(kotlinx.kover.api.DefaultIntellijEngine)
 }
 
-//sonarqube {
-//    properties {
-//        property("sonar.host.url", "http://localhost:9000")
-//        property("sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir}/reports/kover/xml/report.xml")
-//        property("sonar.projectName", "arva")
-//        property("sonar.projectKey", "arva123")
-//        property("sonar.login", "admin")
-//        property("sonar.password", "admin1")
-////        property("sonar.organization", "Edgelab")
-//    }
-//}
-//
-//
-//tasks.named("sonarqube").configure {
-//    dependsOn("koverReport")
-//}
+sonarqube {
+    properties {
+        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir}/reports/kover/xml/report.xml")
+        property("sonar.projectKey", "serhii-org_sonarcloud-test")
+        property("sonar.organization", "serhii-org")
+    }
+}
+
+
+tasks.named("sonarqube").configure {
+    dependsOn("koverReport")
+}
 
