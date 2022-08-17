@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
 
-//    id("org.jetbrains.kotlinx.kover") version "0.6.0-Beta"
+    id("org.jetbrains.kotlinx.kover") version "0.6.0-Beta"
 //    id("org.sonarqube") version "3.3"
 }
 
@@ -37,10 +37,10 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-//kover {
-//    engine.set(kotlinx.kover.api.DefaultJacocoEngine)
-//}
-//
+kover {
+    engine.set(kotlinx.kover.api.DefaultJacocoEngine)
+}
+
 //sonarqube {
 //    properties {
 //        property("sonar.host.url", "http://localhost:9000")
